@@ -13,16 +13,16 @@ export const receiveTasks = tasks => {
 
 export const fetchAllTasks = () => dispatch => {
     return tasksAPIUtil.fetchAllTasks()
-        .then(tasks => {
-            dispatch(receiveTasks(tasks));
+        .then(response => {
+            dispatch(receiveTasks(response.data));
             dispatch(clearErrors());
-        }, errors => dispatch(receiveErrors(errors.responseJSON)));
+        }, errors => dispatch(receiveErrors(errors.response.data)));
 };
 
 export const updateTasks = tasks => dispatch => {
     return tasksAPIUtil.updateTasks(tasks)
-        .then(updatedTasks => {
-            dispatch(receiveTasks(updatedTasks));
+        .then(response => {
+            dispatch(receiveTasks(response.data));
             dispatch(clearErrors());
-        }, errors => dispatch(receiveErrors(errors.responseJSON)));
+        }, errors => dispatch(receiveErrors(errors.response.data)));
 };
